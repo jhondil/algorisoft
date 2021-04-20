@@ -1,0 +1,20 @@
+from django.shortcuts import render
+from django.http import HttpResponse
+from core.erp.models import *
+
+def Categorys(request):
+    data = {
+        'name': 'Jhonatan',
+        'categories': Category.objects.all()
+
+    }
+    return render(request,'body.html', data )
+
+
+def Products(request):
+    data = {
+        'name': 'David',
+        'products': Product.objects.all()
+
+    }
+    return render(request,'products.html', data )
