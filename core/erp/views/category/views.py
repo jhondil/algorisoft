@@ -1,6 +1,6 @@
 
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView,UpdateView, DeleteView
+from django.views.generic import ListView, CreateView,UpdateView, DeleteView, FormView
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import  csrf_exempt
 from django.http import JsonResponse
@@ -40,8 +40,7 @@ class CategoryListView(ListView):
             data['error']= str(e)
         
         return JsonResponse(data)
-        
-            
+
 
     # def def get_queryset(self):
     #     return Category.Objets.filter(name__startswith='L') #para listar por letra las que inicien
@@ -103,5 +102,29 @@ class CategoryDeleteView(DeleteView):
         context['entity'] = 'Categoría'
         context['entity_url'] = reverse_lazy('category_list')
         context['entity_next'] = 'Eliminar Categoría'
-       
+
+        return context
+
+
+class CategoryFormView(FormView): 
+    form_class= CategoryForm
+    template_name='category/create.html'
+    success_url = reverse_lazy('category_list')
+
+    def form_valid(self, form): #si el formulario es valido
+        print(form) #imprime todo lo del formulario
+        return super().form_valid(form)
+
+    def form_invalid(self, form): #si el formulario es invalido
+        print(form)
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Form | Categoría" 
+        # context['hola'] = "hola putito" enviar otra variable 
+        context['entity'] = 'Categoría'
+        context['entity_url'] = reverse_lazy('category_list')
+        context['entity_next'] = 'Agregar Categoría'
+
         return context

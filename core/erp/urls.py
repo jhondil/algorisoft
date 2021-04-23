@@ -8,4 +8,5 @@ urlpatterns = [
     path('category/add/', CategoryCreateView.as_view(), name='category_create'), #llamada por clase
     path('category/update/<int:pk>/', CategoryUpdateView.as_view(), name='category_update'), #llamada por clase   
     path('category/delete/<int:pk>/', CategoryDeleteView.as_view(), name='category_delete'), #llamada por clase   
+    path('category/form/', CategoryFormView.as_view(), name='category_form'), #llamada por clase   
 ]

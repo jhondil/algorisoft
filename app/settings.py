@@ -41,8 +41,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # widget
+    'widget_tweaks',
     #apps
-    'core.erp'
+    'core.erp',
+    'core.homepage',
+    'core.login',
 
 ]
 
@@ -125,3 +129,11 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
     
 ]
+
+STATICFILES_FINDERS =[
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
+LOGIN_REDIRECT_URL = '/erp/category/list/' #para cuando inicie seccion se redirija 
+LOGOUT_REDIRECT_URL = '/login/' #para cuando cierre seccion se redirija 

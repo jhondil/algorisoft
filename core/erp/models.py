@@ -60,7 +60,7 @@ class Product(models.Model):
         verbose_name= 'Producto'
         verbose_name_plural = "Productos"
         ordering = ['id']
-    
+
 class Client(models.Model):
     names = models.CharField(max_length=150, verbose_name='Nombres')
     surnames = models.CharField(max_length = 150, verbose_name='Apellidos')
@@ -76,7 +76,7 @@ class Client(models.Model):
         verbose_name= 'Cliente'
         verbose_name_plural = "Clientes"
         ordering = ['id']
-    
+
 
 class Sale(models.Model):
     cliente = models.ForeignKey(Client, on_delete=models.CASCADE)
@@ -111,11 +111,3 @@ class DetSale(models.Model):
         verbose_name= 'Detalle_venta'
         verbose_name_plural = "Detalles_ventas"
         ordering = ['id']
-    
-    
-    
-    
-    
-    
-    
-    

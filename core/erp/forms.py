@@ -36,3 +36,9 @@ class CategoryForm(ModelForm):
 
 
         }
+
+    def clean(self):
+        cleaned = super().clean()
+        if len(cleaned['name']) <= 50:
+            self.add_error('name', 'Le faltan caracteres')
+        return cleaned

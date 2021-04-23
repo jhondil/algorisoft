@@ -6,3 +6,4 @@ psycopg2-pool==1.1
 pytz==2021.1
 sqlparse==0.4.1
 pillow
+django-widget-tweaks
