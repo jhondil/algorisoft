@@ -9,6 +9,8 @@ from django.urls import reverse_lazy
 from core.erp.models import Category
 from core.erp.forms import *
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 # vista basada en funcion 
 def category_list(request):
     date = {
@@ -21,7 +23,8 @@ def category_list(request):
 
 # vista basada en clases
 
-class CategoryListView(ListView):
+class CategoryListView(LoginRequiredMixin, ListView):
+    login_url = '/login/'
     model = Category
     template_name = 'category/list.html'
 
@@ -56,7 +59,8 @@ class CategoryListView(ListView):
         return context
 
 
-class CategoryCreateView(CreateView):
+class CategoryCreateView(LoginRequiredMixin,CreateView):
+    login_url = '/login/'
     model= Category
     form_class =  CategoryForm
     template_name = 'category/create.html'
@@ -73,7 +77,8 @@ class CategoryCreateView(CreateView):
         return context
 
 
-class CategoryUpdateView(UpdateView):
+class CategoryUpdateView(LoginRequiredMixin,UpdateView):
+    login_url = '/login/'
     model= Category
     form_class =  CategoryForm
     template_name = 'category/create.html'
@@ -89,7 +94,8 @@ class CategoryUpdateView(UpdateView):
        
         return context
 
-class CategoryDeleteView(DeleteView):
+class CategoryDeleteView(LoginRequiredMixin, DeleteView):
+    login_url = '/login/'
     model= Category
     form_class =  CategoryForm
     template_name = 'category/delete.html'
@@ -106,7 +112,7 @@ class CategoryDeleteView(DeleteView):
         return context
 
 
-class CategoryFormView(FormView): 
+class CategoryFormView( LoginRequiredMixin, FormView): 
     form_class= CategoryForm
     template_name='category/create.html'
     success_url = reverse_lazy('category_list')
